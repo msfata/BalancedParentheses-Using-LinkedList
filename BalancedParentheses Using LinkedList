@@ -1,0 +1,39 @@
+package com;
+
+import java.util.LinkedList;
+/*
+ * @author MSFATA ProgrammingHelp
+ */
+public class BalancedParentheses {
+	public static void main(String[] args) {
+		System.out.println(checkParenteces("[]"));
+	}
+
+	private static boolean checkParenteces(String string) {
+		LinkedList<Character> list = new LinkedList<Character>();
+		for (int i = 0; i < string.length(); i++) {
+			Character ch = string.charAt(i);
+			if (ch == '{' || ch == '[' || ch == '(' || ch == ')' || ch == ']' || ch == '}') {
+				if (ch == '{' || ch == '[' || ch == '(') {
+					list.push(ch);
+				} else if (ch == '}') {
+					if (list.isEmpty() || list.pop() != '{') {
+						return false;
+					}
+				} else if (ch == ']') {
+					if (list.isEmpty() || list.pop() != '[') {
+						return false;
+					}
+				} else if (ch == ')') {
+					if (list.isEmpty() || list.pop() != '(') {
+						return false;
+					}
+				}
+
+			} else {
+				return false;
+			}
+		}
+		return list.isEmpty();
+	}
+}
